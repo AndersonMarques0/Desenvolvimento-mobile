@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Exemplo de Tema',
       theme: ThemeData(
-        // Tema principal com cor de fundo do Scaffold azul
+        
         scaffoldBackgroundColor: Colors.blue,
       ),
       home: const MyHomePage(),
@@ -27,7 +27,6 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        // O Theme aninhado sobrescreve a cor de fundo para amarelo
         child: Theme(
           data: ThemeData(
             scaffoldBackgroundColor: Colors.yellow,
