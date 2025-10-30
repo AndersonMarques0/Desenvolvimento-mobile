@@ -1,6 +1,6 @@
 // login-screen.dart
 import 'package:flutter/material.dart';
-import 'package:rotas/widgets/login_form.dart'; // Importe o novo widget
+import 'package:rotas/widgets/login_form.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
                 child: Image.asset('assets/images/android-logo.png'),
               ),
               const SizedBox(height: 20),
-              const LoginForm(), // Use o widget reutilizável aqui
+              const LoginForm(),
             ],
           ),
         ),
