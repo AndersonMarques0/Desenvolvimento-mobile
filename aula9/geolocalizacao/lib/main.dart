@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'dart:io' show Platform;
 
 void main() {
   runApp(const MyApp());
@@ -55,7 +56,6 @@ class _MapaLocalizacaoState extends State<MapaLocalizacao> {
     });
 
     try {
-      // Primeiro, verifica se o serviço de localização está ativo
       bool servicoAtivo = await Geolocator.isLocationServiceEnabled();
       if (!servicoAtivo) {
         setState(() {
@@ -86,11 +86,16 @@ class _MapaLocalizacaoState extends State<MapaLocalizacao> {
         return;
       }
 
-      // Obtém a localização com alta precisão e timeout de 30 segundos
+      // Configurações de localização atualizadas
+      final LocationSettings locationSettings = AndroidSettings(
+        accuracy: LocationAccuracy.best,
+        distanceFilter: 0,
+        forceLocationManager: true,
+        intervalDuration: const Duration(seconds: 10),
+      );
+
       Position posicao = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best,
-        timeLimit: const Duration(seconds: 30),
-        forceAndroidLocationManager: true,
+        locationSettings: locationSettings,
       );
 
       final latlng = LatLng(posicao.latitude, posicao.longitude);
